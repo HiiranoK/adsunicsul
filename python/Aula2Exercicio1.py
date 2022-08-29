@@ -1,0 +1,6 @@
+nome_medicamento1 = input("informe o nome do 1º medicamento ")
+valor_medicamento1= float(input("agora informe o valor dele "))
+nome_medicamento2 = input("informe o nome do 2º medicamento ")
+valor_medicamento2= float(input("agora informe o valor dele "))
+print("O 1º medicamento se chama", nome_medicamento1, "e custa", valor_medicamento1)
+print("O 2º medicamento se chama", nome_medicamento2, "e custa", valor_medicamento2)
