@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {/*usando o exemplo que a professora deu, funciona como a "pagina principal de um site", 
                                             pra algum código ser devidamente executado é necessário que seja referenciado dentro desse bloco de código. */ 
-        Pessoa alguem = new Pessoa(); 
+        var alguem = new Pessoa(); 
         
         //alguem.nome = Pedro; // esse código está comentado pois não funcionará, já que o modificador de acesso dentro da classe pessoa tá como privado.
         // alguem.idade = 42;
@@ -19,7 +19,7 @@ public class Main {
 
 
 
-        Cachorro caramero = new Cachorro();
+        var caramero = new Cachorro();
 
         caramero.nome = "Bidu";
         caramero.raca = "Azul";

@@ -6,7 +6,7 @@ algoritmo AreaDeBaseDoCilindro
         leia(raio);
         escreva("por favor informe a altura do cilindro (em cm)");
         leia(altura);
-        areaBase = raio*(PI*PI);
+        areaBase = PI * r*r;
         volume = altura*areaBase;
         escreva("a área da base é: " + areaBase + "o volume máximo é: " + volume "cm³");
     fim
