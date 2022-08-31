@@ -1,4 +1,4 @@
-package Java;
+package Java.aulaPOO;
 
 public class Cachorro {
     public String nome;

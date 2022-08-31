@@ -1,4 +1,4 @@
-package Java; // area reservada para as bibliotecas necessárias no código.
+package Java.aulaPOO; // area reservada para as bibliotecas necessárias no código.
 
 public class Main {
 
