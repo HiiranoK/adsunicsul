@@ -1,6 +1,5 @@
 
-
-public class ContaBancaria {
+public abstract class ContaBancaria {
 
     private Cliente titular = new Cliente();
     private int numeroConta;
@@ -8,42 +7,33 @@ public class ContaBancaria {
     private double saldo;
     private static int totalDeContas;
 
-    public ContaBancaria(int agencia, int numeroConta, double saldo){
-        if(agencia <= 0){
-            this.agencia = agencia;
-        }else{
-            System.out.println("Valor para agencia inválido, valor padrão aplicado");
-            this.agencia = 0001;
-        }
-        if(numeroConta <= 0){
-            this.numeroConta = numeroConta;
-        }else{
-            System.out.println("Valor para numero da conta inválido, valor padrão aplicado");
-            this.numeroConta = -1;
-        }
-        if(saldo <= 0){
-            this.saldo = saldo;
-        }else{
-            System.out.println("Valor para agencia inválido, valor padrão aplicado");
-            // 0 já é o padrão.
-        }
+    public ContaBancaria(int agencia, int numeroConta){
         ContaBancaria.totalDeContas++;
+        System.out.println("Quantidade de contas no total: " + getTotalDeContas());
+        if(agencia > 0 && numeroConta > 0){
+            this.agencia = agencia;
+            this.numeroConta = numeroConta; 
+        }else{
+            System.out.println("Valor inválido");
+            return;
+        }
     }
-    public ContaBancaria(Cliente titular, int agencia, int numeroConta, double saldo){
-        this(agencia,numeroConta,saldo);
+    
+    public ContaBancaria(Cliente titular, int agencia, int numeroConta){
+        this(agencia,numeroConta);
         this.titular = titular;
     }
 
 
     void depositar(double valor){
-        if(valor >=0){
+        if(valor >0){
             this.saldo += valor;
             System.out.println("Deposito realizado com sucesso");
         }
     }
     
     boolean sacar(double valor){
-        if(valor < 0 && valor <= this.saldo){
+        if(valor > 0 && valor <= this.saldo){
             this.saldo -= valor;
             System.out.println("Saque realizado com sucesso");
             return true;

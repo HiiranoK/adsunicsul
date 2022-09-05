@@ -1,11 +1,17 @@
 public class App {
-    public static void main(String[] args) throws Exception {
-        Funcionario richard = new Funcionario();
+    public static void main(String[] args){
 
-        richard.setNome("Richard");
-        richard.setCpf("111.222.333-45");
-        richard.setSalario(2500.00);
+        Gerente bella = new Gerente("Bellinha","111.222.333-44",8000.00);
+        bella.setSenha(1234);
 
-        System.out.println(richard.getNome() + "\n" + richard.getCpf() + "\n" + richard.getSalario() + "\n" + richard.getBonificacao());
+        Administrador richard = new Administrador("Richard", "111.222.333.55", 4000.00);
+        richard.setSenha(1234);
+
+        System.out.println(bella.getNome() + "\n" +  bella.getCpf() + "\n" +  bella.getSalario() + "\n" +  bella.getBonificacao());
+        SistemaInterno si = new SistemaInterno();
+
+        si.autentica(bella);
+        si.autentica(richard);
+        
     }
 }
