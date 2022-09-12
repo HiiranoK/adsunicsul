@@ -1,8 +1,11 @@
-import GameManager from "game-manager.js";
+import GameManager from "./game-manager";
 
 const config={
-    width:960,
-    innerHeight:540
+    width:1960,
+    innerHeight:1080,
+    columns:10,
+    lines:20,
+    squareSize: 25
 }
 
 GameManager.start(config);
