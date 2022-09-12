@@ -16,16 +16,30 @@ public class App {
         veiculos[6] = new Carro("Kombi", 25000.00);
         veiculos[7] = new Caminhao("DAF", 350000.00);
 
-        System.out.println("Lista não ordenada");
-        for (Veiculo veiculo : veiculos) {
-            System.out.println(veiculo.getNome() + " valor: " + veiculo.getPreco());
-        } 
+        insertionSort(veiculos, 0, veiculos.length);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        selectionSort(veiculos, 0, veiculos.length);
+    }
 
-        Veiculo[] ordenado = ordenaLista(veiculos, 0, veiculos.length);
-        System.out.println("Listando itens a partir do menor preço:");
-        for (Veiculo veiculo : ordenado) {
-            System.out.println(veiculo.getNome() + " valor " + veiculo.getPreco());
+    private static void imprime(Veiculo[] veiculos) {
+        for (Veiculo veiculo : veiculos) {
+            System.out.println(veiculo.getNome() + " custa " + veiculo.getPreco());
         }
+    }
+
+    private static void insertionSort(Veiculo[] veiculos, int inicio, int termino) {
+        for (int i = inicio; i < veiculos.length; i++) {
+            int analise = i;
+            while (analise > 0 && veiculos[analise].getPreco() < veiculos[analise -1].getPreco()) {
+                trocaItens(veiculos, analise, analise-1);
+                analise--;
+            }
+        }
+        System.out.println("Insertion Sort");
+        imprime(veiculos);
     }
 
     public static int retornaMenorCusto(Veiculo[] produtos,int inicio, int termino){
@@ -38,18 +52,23 @@ public class App {
         return menorValor;
     }
 
-    public static Veiculo[] ordenaLista(Veiculo[] produtos,int inicio,int termino){
+
+    public static void selectionSort(Veiculo[] veiculos,int inicio,int termino){
         for(int atual = inicio; atual < termino; atual++){
 
-            int menorCusto = retornaMenorCusto(produtos, atual, termino);
-            Veiculo veiculoAtual = produtos[atual];
-            Veiculo veiculoMenor = produtos[menorCusto];
-
-            produtos[atual] = veiculoMenor;
-            produtos[menorCusto] = veiculoAtual;
+            int menorCusto = retornaMenorCusto(veiculos, atual, termino);
+            trocaItens(veiculos, atual, menorCusto);
         }
-        return produtos;
+        System.out.println("Selection Sort");
+        imprime(veiculos);
     }
 
+    private static void trocaItens(Veiculo[] produtos, int primeiro, int segundo) {
+        Veiculo veiculoAtual = produtos[primeiro];
+        Veiculo veiculoMenor = produtos[segundo];
+
+        produtos[primeiro] = veiculoMenor;
+        produtos[segundo] = veiculoAtual;
+    }
 
 }
