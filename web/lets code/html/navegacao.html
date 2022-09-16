@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra de Navegacao</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/html/">
+                <img src="dinosaur.png" alt="Um dinossauro" height="50">
+            </a>
+            <ul>
+                <li>
+                    <a href="navegacao.html">Home</a>
+                </li>
+                <li>
+                    <a href="primeiro_do_curso.html">Primeira pag</a>
+                </li>
+                <li>
+                    <a href='tags_formatacao.html'>Tags de formatacao</a>
+                </li>
+                <li>
+                    <a href="criar.html">Vazio</a>
+                </li>
+            </ul>
+        </nav>
+        <h1>Tabelas</h1>
+    </header>
+    <main>
+        <section id = "students">
+            <h2>Tabela de Alunos</h2>
+            <table border="2">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Matricula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Carol Danvers</td>
+                        <td>carol.danvers@email.com</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Peter Parker</td>
+                        <td>peter.parker@email.com</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Tony Stark</td>
+                        <td>tony.stark@email.com</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="finance">
+            <h2>Tabela de controle Financeiro</h2>
+            <table border="2">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                    </tr>   
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2">15/06/2022</td>
+                        <td>Despesa</td>
+                        <td>Almoço</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>Receita</td>
+                        <td>3.768</td>
+                        <td>35</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <hr/>
+        <br/>
+        <form>
+            <div action="" method="post">
+                <label for="texto">Login:</label>
+
+                <input type="text" id="texto" placeholder="informe seu login" name="nome"/> 
+                <!-- value="Richard"  -->
+            </div>
+            <div>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="******" >
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"> 
+                <!--tag semantica -->
+            </div>
+            <hr>
+            <div>
+                <label for="data">Data de Nascimento:</label>
+                <input type="date" id="'data" name="data">
+            </div>
+            <div>
+                <label for="hora">Hora:</label>
+                <input type="time" id="'hora" name="hora">
+            </div>
+            <div>
+                <label for="numero">Numero:</label>
+                <input type="number" id="'numero" name="numero">
+            </div>
+            <hr/>
+            <div>
+                <label for="arquivo">Numero:</label>
+                <input type="file" id="arquivo" name="arquivo">
+            </div>
+            <div>
+                <label for="url">Numero:</label>
+                <input type="url" id="'url" name="url">
+                <!--tag semantica -->
+            </div>
+            <hr>
+            <div>
+                <label for="cor">Numero:</label>
+                <input type="color" id="'cor" name="cor">
+            </div>
+            <div>
+                <label for="range">Numero:</label>
+                <input type="range" id="'range" name="range" value="70" max="200" min="50">
+            </div>
+            <hr>
+            <div>
+                <label for="checkbox">Numero:</label>
+                <input type="checkbox" id="'checkbox" name="checkbox" checked="">
+            </div>
+            <div>
+                <label for="radio">Numero:</label>
+                <input type="radio" id="'radio" name="radio" checked="">
+            </div>
+            <hr>
+            <textarea id="bio" name="bio" cols="30" rows="10"></textarea>
+            <br>
+            <br>
+            <div>
+                <select>
+                    <option value="" disabled selected>Selecione uma das opções...</option>
+                    <option value="receita">Receita</option>
+                    <option value="despesa">Despesa</option>
+                    <option value="transferencia">Transferencia</option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <input type="reset" id="'reset" name="reset" value="Limpar">
+            </div>
+            <div>
+                <input type="submit" id="'submit" name="submit" value="Enviar">
+            </div>
+            
+        </form>
+    </main>
+</body>
+</html>
