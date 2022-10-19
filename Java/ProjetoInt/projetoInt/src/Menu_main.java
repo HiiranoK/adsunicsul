@@ -47,8 +47,7 @@ public class Menu_main {
                         while (true) {
                             consultaMenu = JOptionPane
                                     .showInputDialog(null,
-                                            "O que deseja consultar?\n[1] - Cliente\n[2] - Veiculo\n[0] - Retornar")
-                                    .strip();
+                                            "O que deseja consultar?\n[1] - Cliente\n[2] - Veiculo\n[0] - Retornar");
                             if(consultaMenu == null){
                                 break;
                             }
@@ -136,14 +135,20 @@ public class Menu_main {
                         JOptionPane.showMessageDialog(null,
                                 "Formulário para cadastrar um novo cliente ao nosso bando de dados.");
                         nome = JOptionPane.showInputDialog(null, "Nome Completo: ");
-                        cpf = JOptionPane.showInputDialog(null, "CPF (apenas números): ").strip();
+                        cpf = JOptionPane.showInputDialog(null, "CPF (apenas números): ");
                         endereco = JOptionPane.showInputDialog(null, "Endereço Completo: ");
                         e_mail = JOptionPane.showInputDialog(null, "E-mail: ");
-                        telefone = JOptionPane.showInputDialog(null, "Telefone: ").strip();
+                        telefone = JOptionPane.showInputDialog(null, "Telefone: ");
 
-                        objCliente = new Cliente(nome, cpf, endereco, e_mail, telefone);
-
-
+                        if(nome == null || cpf == null || endereco == null || e_mail == null || telefone == null){
+                            JOptionPane.showMessageDialog(null, "Cadastro cancelado devido a campo vazio");
+                            break;
+                        }
+                        else{
+                            objCliente = new Cliente(nome, cpf, endereco, e_mail, telefone);
+                            EstoqueCliente.adicionar(objCliente);
+                            break;
+                        }
                     // ---------------------------------------------------------------------------------------------------------------------------
                     case "3":
 
@@ -172,12 +177,15 @@ public class Menu_main {
                         ano = Integer.parseInt(JOptionPane.showInputDialog(null, "Ano:"));
                         quilometragem = Integer.parseInt(JOptionPane.showInputDialog(null, "Quilometragem:"));
                         preco = Double.parseDouble(JOptionPane.showInputDialog(null, "Preço:"));
-                        // NOVO OBJETO Veiculo
-                        objVeiculo = new Veiculo(modelo, marca, placa, ano, quilometragem, preco);
-                        // ADICIONAR OBJETO Veiculo ao ArrayList
-                        EstoqueVeiculos.adicionar(objVeiculo);
-                        break;
-
+                        if(modelo == null || marca == null || placa == null){
+                            JOptionPane.showMessageDialog(null, "Cadastro cancelado devido a campo vazio");
+                            break;
+                        }
+                        else{
+                            objVeiculo = new Veiculo(modelo, marca, placa, ano, quilometragem, preco);
+                            EstoqueVeiculos.adicionar(objVeiculo);
+                            break;
+                        }
                     // ---------------------------------------------------------------------------------------------------------------------------
                     case "5":
                         JOptionPane.showMessageDialog(null,
