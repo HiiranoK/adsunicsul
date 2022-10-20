@@ -6,7 +6,7 @@ algoritmo Aula5Ex3
         leia(auxilio);
         escreva("informe a duração de seu estágio em meses");
         leia(tempoEmMeses);
-        se(auxilio >= 750 E auxilio <= 950 E tempoEmMeses >= 24){`
+        se(auxilio >= 750 e auxilio <= 950 e tempoEmMeses >= 24){`
             escreva("Você participará do treinamento");
         }senao{
             escreva("Você não participará do treinamento");

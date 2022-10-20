@@ -1,6 +1,6 @@
 algoritmo Aula6Ex3
-    real valor1, valor2
-    caractere operador
+    real valor1, valor2;
+    caractere operador;
 
     início
     escreva("Informe o 1º número!");

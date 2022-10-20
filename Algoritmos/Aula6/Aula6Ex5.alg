@@ -6,7 +6,7 @@ algoritmo Aula6Ex5
         leia(destino);
         escreva("Deseja adiantar a passagem de volta? use S ou N");
         leia(retorno);
-        se(retorno == 'S' OU retorno == 's'){
+        se(retorno == 'S' ou retorno == 's'){
             escolha(destino){
                 caso 1:escreva("A passagem de ida + volta ficou por 900R$");
                 pare

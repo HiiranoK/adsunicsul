@@ -6,7 +6,7 @@ algoritmo Aula5Ex2
         leia(turno);
         escreva("informe a quantidade de horas trabalhada");
         leia(horas);
-        se(turno =='n' OU turno == 'N'){
+        se(turno =='n' ou turno == 'N'){
             escreva("Seu pagamento é de " + (horas * 45));
         }
         senao{

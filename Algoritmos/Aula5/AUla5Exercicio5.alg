@@ -5,7 +5,7 @@ algoritmo AUla5Ex5;
         leia (idade);
         se(idade < 16){
             escreva("Não eleitor");
-        }senao se(idade >= 18 E <= 65){
+        }senao se(idade >= 18 e <= 65){
             escreva("Eleitor obrigatório");
         }senao{
             escreva("Eleitor facultativo");
