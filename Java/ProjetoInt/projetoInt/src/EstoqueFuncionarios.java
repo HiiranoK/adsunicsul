@@ -8,8 +8,8 @@ public class EstoqueFuncionarios {
 
     
     public static void funcionariosInicial() {
-        Funcionario f1 = new Funcionario("Nicolas Ricciardi da Rocha","333.333.333.-33","bla","nicolas@email.com","119XXXX-XXXX",1,  30151953, "Turma D");
-        Funcionario f2 = new Funcionario("Rafael Trindade Guarnieri", "222.222.222-22","abc","rafael@email.com","119XXXX-XXXX", 2, 29976243, "Turma D");
+        Funcionario f1 = new Funcionario("Nicolas Ricciardi da Rocha","333.333.333.-33","bla","nicolas@email.com","119XXXX-XXXX",  "30151953", "Turma D");
+        Funcionario f2 = new Funcionario("Rafael Trindade Guarnieri", "222.222.222-22","abc","rafael@email.com","119XXXX-XXXX", "29976243", "Turma D");
 
         dadosFuncionarios.add(f1);
         dadosFuncionarios.add(f2);
@@ -52,6 +52,13 @@ public class EstoqueFuncionarios {
         }
         return saida;
     } 
+
+    static public boolean removerFuncionario(int idFuncionario) {
+        Funcionario f = dadosFuncionarios.get(idFuncionario); 
+        dadosFuncionarios.remove(f);
+        return true;
+    }
+
     
 //------------------------------------------------------------------------------------------------------ FIM!
 }

@@ -3,21 +3,21 @@
 public class Funcionario extends Cliente{
 
 //------------------------------------------------------------------------------
-    private int idFuncionario;
-    private String nome;
-    private int rgm;
-    private String turma;
+    private String turma, rgm; 
+    private int idFuncionario ;
+    private static int contador =1;
 
 //------------------------------------------------------------------------------ CONSTRUTOR DEFAULT
     public Funcionario() {
     }
 
 //------------------------------------------------------------------------------ CONSTRUTOR SOBRECARREGADO
-    public Funcionario(String nome,String cpf,String endereco,String e_mail, String telefone,int idFuncionario, int rgm, String turma) {
+    public Funcionario(String nome,String cpf,String endereco,String e_mail, String telefone, String rgm, String turma) {
         super(nome,cpf,endereco,e_mail,telefone);
-        this.idFuncionario = idFuncionario;
+        this.idFuncionario = contador;
         this.rgm = rgm;
         this.turma = turma;
+        contador++;
     }
 
 //------------------------------------------------------------------------------ GETTERS
@@ -25,11 +25,7 @@ public class Funcionario extends Cliente{
         return idFuncionario;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public int getRgm() {
+    public String getRgm() {
         return rgm;
     }
 
@@ -38,15 +34,8 @@ public class Funcionario extends Cliente{
     }
 
 //------------------------------------------------------------------------------ SETTERS 
-    public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setRgm(int rgm) {
+    public void setRgm(String rgm) {
         this.rgm = rgm;
     }
 
@@ -57,7 +46,7 @@ public class Funcionario extends Cliente{
 //------------------------------------------------------------------------------ IMPRIMIR
     @Override
     public String toString() {
-        return "\nNome: "+nome+"\nCPF: "+super.getCpf()+"\nEndereço: "+super.getEndereco()+"\nE-mail: "+super.getE_mail()+"\nTelefone: "+super.getTelefone() +"\n ID Funcionario: " + idFuncionario + "\nRGM: " + rgm + "\nTurma: " + turma;
+        return "\nNome: "+super.getNome()+"\nCPF: "+super.getCpf()+"\nEndereço: "+super.getEndereco()+"\nE-mail: "+super.getE_mail()+"\nTelefone: "+super.getTelefone() +"\n ID Funcionario: " + idFuncionario + "\nRGM: " + rgm + "\nTurma: " + turma;
     }
 
 //------------------------------------------------------------------------------ FIM!
