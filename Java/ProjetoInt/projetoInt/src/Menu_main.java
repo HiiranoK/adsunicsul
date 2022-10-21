@@ -6,7 +6,8 @@ public class Menu_main {
 
         // ---------------------------------------------------------------------------------------------------------------------------
         // VARIAVEIS MENU
-        int menu, consultaC;
+        boolean menu = true;
+        int  consultaC;
         String consultaMenu, consultaV;
         // VARIAVEIS VEICULO
         double preco;
@@ -32,14 +33,13 @@ public class Menu_main {
         // ---------------------------------------------------------------------------------------------------------------------------
         JOptionPane.showMessageDialog(null,
                 "Projeto Interdiciplinar: 2º Semestre de 2022 \nCurso: Análise e Desenvolvimento de Sistemas \nCampus: Anália Franco");
-        menu = 1;
-        while (menu == 1) {
+        while (menu) {
             String opcaoMenu = JOptionPane.showInputDialog(null,
                     "Digite o número correspondente ao que deseja realizar: \n[1] - Consultar\n[2] - Cadastrar cliente \n[3] - Vender veiculo \n[4] - Comprar veiculo \n[5] - Funcionários \n[0] - Sair");
             // ---------------------------------------------------------------------------------------------------------------------------
             if (opcaoMenu == null) {
                 JOptionPane.showMessageDialog(null,"Obrigado por usar nosso software! \n\nAss.: Equipe de desenvolvimento.");
-                menu = 0;
+                menu = false;
             } else {
                 opcaoMenu = opcaoMenu.strip();
                 switch (opcaoMenu) {
@@ -195,10 +195,9 @@ public class Menu_main {
 
                     // ---------------------------------------------------------------------------------------------------------------------------
                     case "0":
-                    case "":
                         JOptionPane.showMessageDialog(null,
                                 "Obrigado por usar nosso software! \n\nAss.: Equipe de desenvolvimento.");
-                        menu = 0;
+                        menu = false;
                         break;
                     // ---------------------------------------------------------------------------------------------------------------------------
                     default:
@@ -208,6 +207,4 @@ public class Menu_main {
             }
         }
     }
-    // ---------------------------------------------------------------------------------------------------------------------------
-    // FIM!
 }

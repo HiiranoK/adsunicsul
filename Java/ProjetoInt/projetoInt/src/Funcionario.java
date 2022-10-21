@@ -1,6 +1,6 @@
 
 
-public class Funcionario {
+public class Funcionario extends Cliente{
 
 //------------------------------------------------------------------------------
     private int idFuncionario;
@@ -13,9 +13,9 @@ public class Funcionario {
     }
 
 //------------------------------------------------------------------------------ CONSTRUTOR SOBRECARREGADO
-    public Funcionario(int idFuncionario, String nome, int rgm, String turma) {
+    public Funcionario(String nome,String cpf,String endereco,String e_mail, String telefone,int idFuncionario, int rgm, String turma) {
+        super(nome,cpf,endereco,e_mail,telefone);
         this.idFuncionario = idFuncionario;
-        this.nome = nome;
         this.rgm = rgm;
         this.turma = turma;
     }
@@ -57,7 +57,7 @@ public class Funcionario {
 //------------------------------------------------------------------------------ IMPRIMIR
     @Override
     public String toString() {
-        return "\nID Funcionario: " + idFuncionario + "\nNome: " + nome + "\nRGM: " + rgm + "\nTurma: " + turma;
+        return "\nNome: "+nome+"\nCPF: "+super.getCpf()+"\nEndereço: "+super.getEndereco()+"\nE-mail: "+super.getE_mail()+"\nTelefone: "+super.getTelefone() +"\n ID Funcionario: " + idFuncionario + "\nRGM: " + rgm + "\nTurma: " + turma;
     }
 
 //------------------------------------------------------------------------------ FIM!
