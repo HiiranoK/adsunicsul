@@ -2,7 +2,7 @@ package Java;
 
 public class Fatorial {
     public static void main(String[] args) {
-        int fatorial = 0;
+        int fatorial = 10;
         int resultado=1;
         for (int i = 1; i <= fatorial; i++) {
                 resultado *=i;
