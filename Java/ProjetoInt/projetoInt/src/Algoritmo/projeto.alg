@@ -1,16 +1,27 @@
 algoritmo ProjetoIntegrado
+    //iterador
+    inteiro i=0;
     //NAVEGAÇÃO DOS MENUS
     logico menu=verdadeiro;
     inteiro opcaoMenu,consultaMenu,consultaCliente,consultaVeiculo,funcionarioMenu;
     //INFO DO CLIENTE
     literal nomeCliente, cpfCliente, enderecoCliente, emailCliente, telefoneCliente, clienteAtual=0;
     //INFO VEICULO
-    inteiro idVeiculo, modeloVeiculo, marcaVeiculo, placaVeiculo, anoVeiculo, quilometragemVeiculo, precoVeiculo;
+    literal modeloVeiculo, marcaVeiculo, placaVeiculo, quilometragemVeiculo;
+    inteiro idVeiculo, anoVeiculo, veiculoAtual=0;  
+    real  precoVeiculo;
     //INFO VENDEDOR
-    literal nomeVendedor, cpfVendedor, enderecoVendedor, emailVendedor, telefoneVendedor, rgmVendedor, turmaVendedor
-    inteiro idVendedor=1;
-    //VETORES
-
+    literal nomeVendedor, cpfVendedor, enderecoVendedor, emailVendedor, telefoneVendedor, rgmVendedor, turmaVendedor;
+    inteiro idVendedor, vendedorAtual=0;
+    //VETORES CLIENTE
+    literal vetorNomeCliente[100],vetorCpfCliente[100],vetorEnderecoCliente[100],vetorEmailCliente[100],vetorTelefoneCliente[100];
+    //VETORES VEICULO
+    literal vetorModeloVeiculo[100], vetorMarcaVeiculo[100], vetorPlacaVeiculo[100], vetorQuilometragemVeiculo[100];
+    inteiro vetorIdVeiculo[100], vetorAnoVeiculo[100];  
+    real  vetorPrecoVeiculo[100];
+    //VETORES VENDEDOR
+    literal vetorNomeVendedor[100], vetorCpfVendedor[100], vetorEnderecoVendedor[100],vetorEmailVendedor[100],vetorTelefoneVendedor[100],vetorRGM[100], vetorTurma[100];
+    inteiro vetorIdVendedor[100];
     início
     enquanto(menu){
         escreva("Informe a opção desejada \n [1] - Consultar\n[2] - Cadastrar cliente \n[3] - Vender veiculo \n[4] - Comprar veiculo \n[5] - Funcionários \n[0] - Sair");
@@ -18,16 +29,19 @@ algoritmo ProjetoIntegrado
         escolha(opcaoMenu){
             caso 1:
                 escreva("O que deseja consultar?\n[1] - Cliente\n[2] - Veiculo\n[0] - Retornar");
-                leia(consultaMenu)
+                leia(consultaMenu);
                 se(consultaMenu == 1){
                     enquanto(verdadeiro){
                         escreva("Consultar clientes: \n[1] - Exibir todos os clientes \n[2] - CPF \n[0] - Retornar");
                         leia(consultaCliente);
                         se(consultaCliente == 1){
-                            *** fazer retorno dos cliente ***
+                            retornaClientes(); 
                         }senao se(consultaCliente == 2){
-                            *** fazer a consulta por cpf ***
+                            escreva("Informe o cpf a ser consultado:");
+                            leia(cpfCliente);
+                            retornaClienteCPF(cpfCliente);
                         }senao se(consultaCliente == 0){
+                            escreva("Retornando ao menu de consulta");
                             pare;
                         }senao{
                             escreva("Opção inválida tente novamente");
@@ -39,20 +53,33 @@ algoritmo ProjetoIntegrado
                         escreva("Escolha o tipo de consulta: \n[1] - Exibir todo o estoque \n[2] - Modelo \n[3] - Marca \n[4] - Ano \n[5] - Preço máximo (R$) \n[6] - Quilometragem máxima\n[7] - ID Veículo \n[0] - Retornar");
                         leia(consultaVeiculo)
                         se(consultaVeiculo == 1){
-                            *** fazer retorno dos estoque ***
+                            retornaEstoque();
                         }senao se(consultaCliente == 2){
-                            *** fazer a consulta por modelo ***
+                            escreva("Informe o modelo a ser consultado");
+                            leia(modeloVeiculo);
+                            retornaEstoqueModelo(modeloVeiculo);
                         }senao se(consultaCliente == 3){
-                            *** fazer a consulta por marca ***
+                            escreva("Informe a marca a ser consultado");
+                            leia(marcaVeiculo);
+                            retornaEstoqueMarca(marcaVeiculo);
                         }senao se(consultaCliente == 4){
-                            *** fazer a consulta por ano ***
+                            escreva("Informe o ano limite a ser consultado");
+                            leia(anoVeiculo);
+                            retornaEstoqueAno(anoVeiculo);
                         }senao se(consultaCliente == 5){
-                            *** fazer a consulta por preco ***
+                            escreva("Informe o preço limite a ser consultado");
+                            leia(precoVeiculo);
+                            retornaEstoquePreco(precoVeiculo);
                         }senao se(consultaCliente == 6){
-                            *** fazer a consulta por km ***
+                            escreva("Informe a quilometragem limite a ser consultado");
+                            leia(quilometragemVeiculo);
+                            retornaEstoqueKm(quilometragemVeiculo);
                         }senao se(consultaCliente == 7){
-                            *** fazer a consulta por id ***
+                            escreva("Informe o id a ser consultado");
+                            leia(idVeiculo);
+                            retornaEstoqueId(idVeiculo);
                         }senao se(consultaCliente == 0){
+                            escreva("Retornando ao menu de consulta");
                             pare;
                         }senao{
                             escreva("Opção inválida tente novamente");
@@ -60,6 +87,7 @@ algoritmo ProjetoIntegrado
                     }
                 }
                 senao se(consultaMenu == 0){
+                    escreva("Retornando ao menu principal");
                     retorne;
                 }
                 senao{
@@ -81,7 +109,13 @@ algoritmo ProjetoIntegrado
                 se(nomeCliente == nulo ou cpfCliente == nulo ou enderecoCliente == nulo ou emailCliente == nulo ou telefoneCliente == nulo){
                     escreva("Cadastro cancelado devido a campo(s) vazio(s)");
                 }senao{
-                    ***fazer os vetores e incremento do cliente para guardar os dados*** 
+                    vetorNomeCliente[clienteAtual] = nomeCliente;
+                    vetorCpfCliente[clienteAtual] = cpfCliente;
+                    vetorEnderecoCliente[clienteAtual] = enderecoCliente;
+                    vetorEmailCliente[clienteAtual] = emailCliente;
+                    vetorTelefoneCliente[clienteAtual] = telefoneCliente;
+                    clienteAtual++;
+                    escreva("Cliente cadastrado com sucesso!");
                 }
             pare;
             caso 3:
@@ -92,7 +126,12 @@ algoritmo ProjetoIntegrado
                 leia(cpfCliente):
                 escreva("Informe o id do veiculo vendido: ");
                 leia(idVeiculo):
-                *** validar se as informações estão nulas e se não gerar a venda + comprovante ***
+                se(idVendedor == nulo ou cpfCliente == nulo ou idVeiculo == nulo){
+                    escreva("Cadastro cancelado devido a campo(s) vazio(s)");
+                }senao{
+                    gerarComprovante(idVendedor,cpfCliente,idVeiculo);
+                    escreva("Compra realizada com sucesso!")
+                }
             pare
             caso 4:
                 escreva("Preencha o formulário para cadastrar um novo veículo ao nosso estoque.");
@@ -111,8 +150,15 @@ algoritmo ProjetoIntegrado
                 se(modeloVeiculo == nulo ou marcaVeiculo == nulo ou placaVeiculo == nulo ou anoVeiculo == nulo ou quilometragemVeiculo == nulo ou precoVeiculo == nulo){
                     escreva("Cadastro cancelado devido a campo(s) vazio(s)");
                 }senao{
-                    *** criar um incrementador e preencher os dados nos vetores ***
-                    escreva("Veiculo cadastrado com sucesso! ") *** jogar isso dentro do método ***
+                    vetorIdVeiculo[veiculoAtual] = veiculoAtual;
+                    vetorModeloVeiculo[veiculoAtual] = modeloVeiculo;
+                    vetorMarcaVeiculo[veiculoAtual] = marcaVeiculo;
+                    vetorPlacaVeiculo[veiculoAtual] = placaVeiculo;
+                    vetorAnoVeiculo[veiculoAtual] = anoVeiculo;
+                    vetorQuilometragemVeiculo[veiculoAtual] = quilometragemVeiculo;
+                    vetorPrecoVeiculo[veiculoAtual] = precoVeiculo;
+                    veiculoAtual++;
+                    escreva("Veiculo cadastrado com sucesso! ")
                 }
             pare
             caso 5:
@@ -121,7 +167,7 @@ algoritmo ProjetoIntegrado
                 escolha(funcionarioMenu){
                     caso 1:
                         escreva("Consultando todo o nosso bando de dados sobre funcionários! \n(OBS: Nome dos integrantes do grupo)");
-                        *** criar um laço for que passará pelo vetor dos funcionários ***
+                        retornaFuncionarios();
                         pare;
                     caso 2:
                         escreva("Preencha todos os campos do formulário para cadastrar o funcionário");
@@ -142,19 +188,27 @@ algoritmo ProjetoIntegrado
                         se(nomeVendedor == nulo ou cpfVendedor == nulo ou enderecoVendedor == nulo ou emailVendedor == nulo ou telefoneVendedor == nulo ou rgmVendedor == nulo ou turmaVendedor == nulo){
                             escreva("Cadastro cancelado devido a campo(s) vazio(s)");
                         }senao{
-                            *** criar um incrementador e preencher os dados nos vetores ***
-                            escreva("Funcionário cadastrado com sucesso! ") *** jogar isso dentro do método ***
+                            vetorIdVendedor[vendedorAtual] = vendedorAtual+1;
+                            vetorNomeVendedor[vendedorAtual] = nomeVendedor;
+                            vetorCpfVendedor[vendedorAtual] = cpfVendedor;
+                            vetorEnderecoVendedor[vendedorAtual] = enderecoVendedor;
+                            vetorEmailVendedor[vendedorAtual] = emailVendedor;
+                            vetorTelefoneVendedor[vendedorAtual] = telefoneVendedor;
+                            vetorRGM[vendedorAtual] = rgmVendedor;
+                            vetorTurma[vendedorAtual] = turmaVendedor;
+                            vendedorAtual++;
+                            escreva("Funcionário cadastrado com sucesso! ") 
                         }
                     pare;
                     caso 3:
                         escreva("Informe o ID do funcionário a ser desligado");
                         leia(idVendedor);
-                        *** fazer um for loop procurando o id, se encontrado remover o funcionário ***
+                        removeVendedor(idVendedor);
                     pare
                     caso 0:
                         escreva("retornando ao menu anterior...");
                     padrao:
-                        escreva("Opção Inválida!")
+                        escreva("Opção Inválida, retornando ao menu anterior!");
                 }
             pare
             caso 0:
@@ -164,6 +218,180 @@ algoritmo ProjetoIntegrado
             padrao:
                 escreva("Opção inválida!")
         }
+    }// fim menu
+
+    void retornaClientes(){
+        para(i=0;i>vetorNomeCliente.tamanho;i++){
+            escreva(vetorNomeCliente[i]);
+            escreva(vetorCpfCliente[i]);
+            escreva(vetorEmailCliente[i]);
+            escreva(vetorEnderecoCliente[i]);
+            escreva(vetorTelefoneCliente[i]);
+            escreva("--------------------\n--------------------\n--------------------");
+        }
     }
+    void retornaClienteCPF(inteiro cpf){
+        para(i=0;i>vetorCpfCliente.tamanho;i++){
+            se(cpf == vetorCpfCliente[i]){
+                escreva(vetorNomeCliente[i]);
+                escreva(vetorCpfCliente[i]);
+                escreva(vetorEmailCliente[i]);
+                escreva(vetorEnderecoCliente[i]);
+                escreva(vetorTelefoneCliente[i]);
+            } 
+        }
+    }
+    void retornaEstoque(){
+        para(i=0;i>vetorIdVeiculo.tamanho;i++){
+            escreva(vetorIdVeiculo[i]);
+            escreva(vetorModeloVeiculo[i]);
+            escreva(vetorMarcaVeiculo[i]);
+            escreva(vetorPlacaVeiculo[i]);
+            escreva(vetorAnoVeiculo[i]);
+            escreva(vetorQuilometragemVeiculo[i]);
+            escreva(vetorPrecoVeiculo[i]);
+            escreva("--------------------\n--------------------\n--------------------");
+        }
+    }
+    void retornaEstoqueModelo(literal modelo){
+        para(i=0;i>vetorModeloVeiculo.tamanho;i++){
+            se(modelo == vetorModeloVeiculo[i]){
+                escreva(vetorIdVeiculo[i]);
+                escreva(vetorModeloVeiculo[i]);
+                escreva(vetorMarcaVeiculo[i]);
+                escreva(vetorPlacaVeiculo[i]);
+                escreva(vetorAnoVeiculo[i]);
+                escreva(vetorQuilometragemVeiculo[i]);
+                escreva(vetorPrecoVeiculo[i]);
+                escreva("--------------------\n--------------------\n--------------------");
+            }
+        }
+    }
+    void retornaEstoqueMarca(literal marca){
+        para(i=0;i>vetorMarcaVeiculo.tamanho;i++){
+            se(marca == vetorMarcaVeiculo[i]){
+                escreva(vetorIdVeiculo[i]);
+                escreva(vetorModeloVeiculo[i]);
+                escreva(vetorMarcaVeiculo[i]);
+                escreva(vetorPlacaVeiculo[i]);
+                escreva(vetorAnoVeiculo[i]);
+                escreva(vetorQuilometragemVeiculo[i]);
+                escreva(vetorPrecoVeiculo[i]);
+                escreva("--------------------\n--------------------\n--------------------");
+            }
+        }
+    }
+    void retornaEstoqueAno(inteiro ano){
+        para(i=0;i>vetorAnoVeiculo.tamanho;i++){
+            se(vetorAnoVeiculo[i] <= ano){
+                escreva(vetorIdVeiculo[i]);
+                escreva(vetorModeloVeiculo[i]);
+                escreva(vetorMarcaVeiculo[i]);
+                escreva(vetorPlacaVeiculo[i]);
+                escreva(vetorAnoVeiculo[i]);
+                escreva(vetorQuilometragemVeiculo[i]);
+                escreva(vetorPrecoVeiculo[i]);
+                escreva("--------------------\n--------------------\n--------------------");
+            }
+        }
+    }
+    void retornaEstoqueKm(inteiro km){
+        para(i=0;i>vetorQuilometragemVeiculo.tamanho;i++){
+            se(vetorQuilometragemVeiculo[i] <= km){
+                escreva(vetorIdVeiculo[i]);
+                escreva(vetorModeloVeiculo[i]);
+                escreva(vetorMarcaVeiculo[i]);
+                escreva(vetorPlacaVeiculo[i]);
+                escreva(vetorAnoVeiculo[i]);
+                escreva(vetorQuilometragemVeiculo[i]);
+                escreva(vetorPrecoVeiculo[i]);
+                escreva("--------------------\n--------------------\n--------------------");
+            }
+        }
+    }
+    void retornaEstoquePreco(real preco){
+        para(i=0;i>vetorPrecoVeiculo.tamanho;i++){
+            se(vetorPrecoVeiculo[i] <= preco){
+                escreva(vetorIdVeiculo[i]);
+                escreva(vetorModeloVeiculo[i]);
+                escreva(vetorMarcaVeiculo[i]);
+                escreva(vetorPlacaVeiculo[i]);
+                escreva(vetorAnoVeiculo[i]);
+                escreva(vetorQuilometragemVeiculo[i]);
+                escreva(vetorPrecoVeiculo[i]);
+                escreva("--------------------\n--------------------\n--------------------");
+            }
+        }
+    }
+    void retornaEstoqueId(inteiro id){
+        para(i=0;i>vetorIdVeiculo.tamanho;i++){
+            se(id == vetorIdVeiculo[i]){
+                escreva(vetorIdVeiculo[i]);
+                escreva(vetorModeloVeiculo[i]);
+                escreva(vetorMarcaVeiculo[i]);
+                escreva(vetorPlacaVeiculo[i]);
+                escreva(vetorAnoVeiculo[i]);
+                escreva(vetorQuilometragemVeiculo[i]);
+                escreva(vetorPrecoVeiculo[i]);
+            }
+        }
+    }
+    void removeVeiculo(inteiro id){
+        para(i=0;i>vetorIdVeiculo.tamanho;i++){
+            se(id == vetorIdVeiculo[i]){
+                vetorModeloVeiculo[i].remover;
+                vetorMarcaVeiculo[i].remover;
+                vetorPlacaVeiculo[i].remover;
+                vetorAnoVeiculo[i].remover;
+                vetorQuilometragemVeiculo[i].remover;
+                vetorPrecoVeiculo[i].remover;
+                vetorIdVeiculo[i].remover;
+            }
+        }
+    }
+    void retornaFuncionarios(){
+        para(i=0;i>vetorIdVendedor.tamanho;i++){
+            escreva(vetorIdVendedor[i]);
+            escreva(vetorNomeVendedor[i]);
+            escreva(vetorCpfVendedor[i]);
+            escreva(vetorEmailVendedor[i]);
+            escreva(vetorEnderecoVendedor[i]);
+            escreva(vetorTelefoneVendedor[i]);
+            escreva(vetorRGM[i]);
+            escreva(vetorTurma[i]);
+            escreva("--------------------\n--------------------\n--------------------");
+        }
+    }
+    void removeVendedor(inteiro id){
+        para(i=0; i>vetorIdVendedor.tamanho;i++){
+            se(id == vetorIdVendedor[i]){
+                vetorNomeVendedor[i].remover;
+                vetorCpfVendedor[i].remover;
+                vetorEnderecoVendedor[i].remover;
+                vetorEmailVendedor[i].remover;
+                vetorTelefoneVendedor[i].remover;
+                vetorRGM[i].remover;
+                vetorTurma[i].remover;
+                vetorIdVendedor[i].remover;
+            }
+        }
+    }
+
+    literal retornarVendedorID(inteiro id){
+        para(i=0; i> vetorIdVendedor.tamanho;i++){
+            se(id == vetorIdVendedor[i]){
+                saida = escreva(vetorNomeCliente[i] + "ID:" + vetorIdVendedor[i] + "contato: "+ vetorTelefoneVendedor[i]);
+            }
+        }
+    }
+    literal gerarComprovante(inteiro idVendedor, literal cpf, inteiro idVeiculo){
+        literal saida = "\n\n====COMPROVANTE DE COMPRA====\n\n";
+        saida += "VENDEDOR: " + retornaVendedorID(idVendedor); 
+        saida += "COMPRADOR: " + retornaClienteCPF(cpf);
+        saida += "VEÍCULO COMPRADO: " +retornaEstoqueId(idVeiculo);
+        saida += removeVeiculo(idVeiculo);
+        retorne saida;
+    }
+
 
     fim
