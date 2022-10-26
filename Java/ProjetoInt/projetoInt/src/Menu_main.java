@@ -7,8 +7,7 @@ public class Menu_main {
         // ---------------------------------------------------------------------------------------------------------------------------
         // VARIAVEIS MENU
         boolean menu = true;
-        int consultaC;
-        String consultaMenu, consultaV, opcaoMenu, funcionarioMenu;
+        String consultaMenu, consultaV, opcaoMenu, funcionarioMenu,consultaC;
         // VARIAVEIS VEICULO
         double preco;
         int ano, quilometragem, idVeiculo;
@@ -53,20 +52,19 @@ public class Menu_main {
                                 break;
                             } else if (consultaMenu.strip().equals("1")) {
                                 while (true) {
-                                    consultaC = Integer.parseInt(JOptionPane.showInputDialog(null,
-                                            "Consultar clientes pelo: \n[1] - Exibir todos os clientes \n[2] - CPF \n[0] - Retornar"));
-                                    if (consultaC == 1) {
+                                    consultaC = JOptionPane.showInputDialog(null,
+                                            "Consultar clientes: \n[1] - Exibir todos os clientes \n[2] - CPF \n[0] - Retornar");
+                                    if (consultaC.equals("1")) {
                                         JOptionPane.showMessageDialog(null,
                                                 "Consultando todo o nosso banco de dados sobre clientes!");
                                         System.out.println(EstoqueCliente.listarClientes());
-                                    } else if (consultaC == 2) {
-
+                                    } else if (consultaC.equals("2")) {
                                         cpf = JOptionPane
                                                 .showInputDialog(null, "Insira o CPF do cliente (apenas números):")
                                                 .strip();
 
                                         System.out.println(EstoqueCliente.pesquisarCPF(cpf));
-                                    } else if (consultaC == 0) {
+                                    } else if (consultaC.equals("0")) {
                                         break;
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Opção Inválida!");
@@ -75,52 +73,52 @@ public class Menu_main {
                             } else if (consultaMenu.strip().equals("2")) {
                                 while (true) {
                                     consultaV = JOptionPane.showInputDialog(null,
-                                            "Consultar veículos pelo: \n[1] - Exibir todo o estoque \n[2] - Modelo \n[3] - Marca \n[4] - Ano \n[5] - Preço máximo (R$) \n[6] - Quilometragem máxima\n[7] - ID Veículo \n[0] - Retornar");
+                                            "Escolha o tipo de consulta: \n[1] - Exibir todo o estoque \n[2] - Modelo \n[3] - Marca \n[4] - Ano \n[5] - Preço máximo (R$) \n[6] - Quilometragem máxima\n[7] - ID Veículo \n[0] - Retornar");
 
                                     if (consultaV == null) {
                                         break;
                                     } else {
                                         consultaV = consultaV.strip();
-                                        switch (consultaV) {
-                                            case "1":
+                                        if(consultaV.equals("1")) {
                                                 JOptionPane.showMessageDialog(null,
                                                         "Consultando todo o nosso estoque de veículos!");
                                                 System.out.println(EstoqueVeiculos.listarVeiculos());
-                                                break;
-                                            case "2":
-                                                modelo = JOptionPane.showInputDialog(null, "Insira o modelo desejado:");
-                                                System.out.println(EstoqueVeiculos.pesquisarModelo(modelo));
-                                                break;
-                                            case "3":
-                                                marca = JOptionPane.showInputDialog(null, "Insira a marca desejada:");
-                                                System.out.println(EstoqueVeiculos.pesquisarMarca(marca));
-                                                break;
-                                            case "4":
-                                                ano = Integer.parseInt(JOptionPane.showInputDialog(null,
-                                                        "Insira até qual ano deseja que o veículo seja:"));
-                                                System.out.println(EstoqueVeiculos.pesquisarAno(ano));
-                                                break;
-                                            case "5":
-                                                preco = Double.parseDouble(JOptionPane.showInputDialog(null,
+                                            }
+                                        else if(consultaV.equals("2")){
+                                            modelo = JOptionPane.showInputDialog(null, "Insira o modelo desejado:");
+                                            System.out.println(EstoqueVeiculos.pesquisarModelo(modelo));
+                                        }
+                                        else if(consultaV.equals("3")){
+                                            marca = JOptionPane.showInputDialog(null, "Insira a marca desejada:");
+                                            System.out.println(EstoqueVeiculos.pesquisarMarca(marca));
+                                        }
+                                        else if(consultaV.equals("4")){
+                                            ano = Integer.parseInt(JOptionPane.showInputDialog(null,
+                                            "Insira até qual ano deseja que o veículo seja:"));
+                                            System.out.println(EstoqueVeiculos.pesquisarAno(ano));
+                                        }
+                                        else if(consultaV.equals("5")){
+                                            preco = Double.parseDouble(JOptionPane.showInputDialog(null,
                                                         "Insira o valor máximo que deseja pagar (R$):"));
-                                                System.out.println(EstoqueVeiculos.pesquisarPreco(preco));
-                                                break;
-                                            case "6":
+                                            System.out.println(EstoqueVeiculos.pesquisarPreco(preco));
+                                        }
+                                        else if(consultaV.equals("6")){
                                                 quilometragem = Integer.parseInt(JOptionPane.showInputDialog(null,
                                                         "Insira a quilometragem máxima que o veículo tenha:"));
                                                 System.out
                                                         .println(EstoqueVeiculos.pesquisarQuilometragem(quilometragem));
-                                                break;
-                                            case "7":
+                                        }
+                                        else if(consultaV.equals("7")){
                                                 idVeiculo = Integer.parseInt(JOptionPane.showInputDialog(null,
                                                         "Insira o ID referente ao veículo:"));
                                                 System.out.println(EstoqueVeiculos.pesquisarId(idVeiculo));
-                                                break;
-                                            case "0":
+                                        }
+                                        else if(consultaV.equals("0")){
                                                 JOptionPane.showMessageDialog(null, "saindo");
                                                 break;
-                                            default:
-                                                JOptionPane.showMessageDialog(null, "Opção Inválida!");
+                                        }
+                                        else{
+                                            JOptionPane.showMessageDialog(null, "Opção Inválida!");
                                         }
                                     }
                                 }
@@ -134,7 +132,7 @@ public class Menu_main {
 
                     case "2":
                         JOptionPane.showMessageDialog(null,
-                                "Formulário para cadastrar um novo cliente ao nosso bando de dados.");
+                                "Preencha todos os campos do formulário para cadastrar um novo cliente ao nosso bando de dados.");
                         nome = JOptionPane.showInputDialog(null, "Nome Completo: ");
                         cpf = JOptionPane.showInputDialog(null, "CPF (apenas números): ");
                         endereco = JOptionPane.showInputDialog(null, "Endereço Completo: ");
@@ -159,7 +157,7 @@ public class Menu_main {
                                 .strip();
                         veiculoComprado = Integer
                                 .parseInt(JOptionPane.showInputDialog(null, "ID do veículo que será comprado: "));
-
+                        // LEMBRAR DE FAZER A VALIDAÇÃO...
                         System.out.println(
                                 ComprovanteCompra.comprovante(funcionarioVendedor, clienteComprador, veiculoComprado));
                         JOptionPane.showMessageDialog(null, "Comprovante de Compra Gerado!");
@@ -174,7 +172,7 @@ public class Menu_main {
                         placa = JOptionPane.showInputDialog(null, "Placa:");
                         ano = Integer.parseInt(JOptionPane.showInputDialog(null, "Ano:"));
                         quilometragem = Integer.parseInt(JOptionPane.showInputDialog(null, "Quilometragem:"));
-                        preco = Double.parseDouble(JOptionPane.showInputDialog(null, "Preço:"));
+                        preco = Double.parseDouble(JOptionPane.showInputDialog(null, "Preço de venda:"));
                         if (modelo == null || marca == null || placa == null) {
                             JOptionPane.showMessageDialog(null, "Cadastro cancelado devido a campo(s) vazio(s)");
                             break;
@@ -222,6 +220,9 @@ public class Menu_main {
                             JOptionPane.showMessageDialog(null,
                             "Informações sobre o funcionário removidas");
                                 break;
+                            case "0":
+                                JOptionPane.showMessageDialog(null, "saindo");
+                            break;
                             default:
                             JOptionPane.showMessageDialog(null, "Opção Inválida!");
                             
@@ -238,7 +239,6 @@ public class Menu_main {
                     // ---------------------------------------------------------------------------------------------------------------------------
                     default:
                         JOptionPane.showMessageDialog(null, "Opção Inválida!");
-                        break;
                 }
             }
         }
